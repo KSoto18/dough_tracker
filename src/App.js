@@ -24,17 +24,17 @@ const localizer = dateFnsLocalizer({
   locales
 })
 
-const bills = [
+const bills= [
   {
     title: "Capital One",
-    start: new Date(2023, 3, 0),
-    end: new Date(2023, 3, 0)
+    start: new Date(2023, 1, 3),
+    end: new Date(2023, 1, 3)
   },
 
   {
     title: "Netflix",
-    start: new Date(2023, 4, 0),
-    end: new Date(2023, 4, 0)
+    start: new Date(2023, 1, 3),
+    end: new Date(2023, 1, 3)
   },
 
 ]
@@ -46,7 +46,7 @@ function App() {
 
       <Calendar 
       localizer={localizer} 
-      bills={bills} 
+      events={bills}
       startAccessor="start" 
       endAccessort="end" 
       style={{height: 500, margin: "100px"}}
