@@ -10,7 +10,7 @@ import DatePicker from "react-datepicker";
 // Style Imports
 import './App.css';
 import "react-big-calendar/lib/css/react-big-calendar.css";
-
+import "react-datepicker/dist/react-datepicker.css";
 
 const locales = {
   "en-US": require("date-fns/locale/en-US")
@@ -24,7 +24,7 @@ const localizer = dateFnsLocalizer({
   locales
 })
 
-const bills= [
+const bill = [
   {
     title: "Capital One",
     start: new Date(2023, 1, 3),
@@ -40,16 +40,44 @@ const bills= [
 ]
 
 function App() {
+
+  const [newBill, setNewBill] = useState({ title: "", start: "", end: "" });
+  const [allBills, setAllBills] = useState(bill);
+
+  function handleAddBill() {
+    setAllBills([...allBills, newBill])
+  }
+
   return (
 
     <div className="App">
 
-      <Calendar 
-      localizer={localizer} 
-      events={bills}
-      startAccessor="start" 
-      endAccessort="end" 
-      style={{height: 500, margin: "100px"}}
+      <h1>BILLS</h1>
+      <h2>Add New Bill</h2>
+
+      {/* NEW BILL INPUT AREA */}
+      <div>
+        <input type="text" placeholder="Add Bill"
+          value={newBill.title} onChange={(e) => setNewBill({ ...newBill, title: e.target.value })}
+        />
+
+        {/* Start Date Picker */}
+        <DatePicker placeholderText="Start Date"
+          selected={newBill.start} onChange={(start) => setNewBill({ ...newBill, start })} />
+
+        {/* End Date Picker */}
+        <DatePicker placeholderText="End Date"
+          selected={newBill.end} onChange={(end) => setNewBill({ ...newBill, end })} />
+
+          <button onClick={handleAddBill}>Add!</button>
+      </div>
+
+      <Calendar
+        localizer={localizer}
+        events={allBills}
+        startAccessor="start"
+        endAccessort="end"
+        style={{ height: 500, margin: "100px" }}
       />
 
     </div>
