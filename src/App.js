@@ -7,6 +7,10 @@ import getDay from "date-fns/getDay";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 
+// Components
+import Header from './components/Header'
+import Footer from './components/Footer'
+
 // Style Imports
 import './App.css';
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -44,6 +48,7 @@ function App() {
   const [newBill, setNewBill] = useState({ title: "", start: "", end: "" });
   const [allBills, setAllBills] = useState(bill);
 
+
   function handleAddBill() {
     setAllBills([...allBills, newBill])
   }
@@ -51,6 +56,8 @@ function App() {
   return (
 
     <div className="App">
+
+       <Header/>
 
       <h1>BILLS</h1>
       <h2>Add New Bill</h2>
@@ -79,6 +86,8 @@ function App() {
         endAccessort="end"
         style={{ height: 500, margin: "100px" }}
       />
+
+      <Footer/>
 
     </div>
   );
